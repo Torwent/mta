@@ -193,7 +193,7 @@ begin
         end;
     end;
   WriteLn('Player is far from destination, walking via MM.');
-  Pt := [TPA.Mean.X, TPA.Mean.Y+4];
+  Pt := [TPA.Mean.X+Random(-6, 6), TPA.Mean.Y+4+Random(-6, 6)];
   Mouse.HumanMove(Pt);
   Wait(50, 100);
   Mouse.Click(MOUSE_LEFT);
