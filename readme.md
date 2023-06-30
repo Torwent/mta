@@ -6,7 +6,7 @@ This readme and the script files are incomplete and will be updated soon. The sc
 
 ## General instructions:
 
-1. Save the following map into Simba/Includes/WaspLib/osr/walker/maps: https://i.imgur.com/yRapvnM.png
+1. Save the following map into Simba/Includes/WaspLib/osr/walker/maps as mta.png: https://i.imgur.com/yRapvnM.png
 2. Save the runelite.properties and import it from Runelite settings, then activate it
 3. Use the RuneLite plugin menu entry swapper to swap the walking options on the statues in MTA statue room by right clicking them. For example you want to do telekinetic room, you modify all other rooms left click to be walk here and telekinetic room's left click to be enter. I also suggest you to edit the walk option of the building door to be walk here or cancel if running any other room than graveyard. And when running graveyard you put it back to Enter.
 4. Run script with RuneLite (Search discord for instructions if you don't know how)
