@@ -1,4 +1,4 @@
-program telekinetic;
+program telekinesisroom;
 {$DEFINE SRL_USE_REMOTEINPUT}
 {$I WaspLib/osr.simba}
 {$DEFINE FORMS_V2}
@@ -130,7 +130,7 @@ begin
   if SRL.CountColor(CTS0(16764006, 0), InfoArea) > 50 then Exit('INROOM');
   if STATUEAREA.Bounds.Contains(RSW.GetMyPos()) then Exit('STATUEAREA');
   if MTALOBBY.Bounds.Contains(RSW.GetMyPos()) then Exit('MTALOBBY');
-  Exit('Unknown state!');
+  Exit('UNKNOWN');
 end;
 
 procedure EnterRoom();
@@ -297,6 +297,7 @@ begin
         'MTALOBBY'   : WalkToStatues();
         'INROOM'     : SolveRoom();
         'STATUEAREA' : EnterRoom();
+        'UNKNOWN'    : ExitRoom();
       end;
     Wait(150, 350);
     end;

@@ -1,4 +1,4 @@
-program ec;
+program enchantroom;
 {$DEFINE SRL_USE_REMOTEINPUT}
 {$I WaspLib/osr.simba}
 {$DEFINE FORMS_V2}
@@ -124,7 +124,7 @@ begin
   if ECROOM.Bounds.Contains(Pos) then Exit('INROOM');
   if STATUEAREA.Bounds.Contains(Pos) then Exit('STATUEAREA');
   if MTALOBBY.Bounds.Contains(Pos) then Exit('MTALOBBY');
-  Exit('Unknown state!');
+  Exit('UNKNOWN');
 end;
 
 procedure EnterRoom();
@@ -144,6 +144,21 @@ begin
         end;
     end;
   Antiban.RandomRotate();
+end;
+
+procedure ExitRoom();
+var TPA: TPointArray;
+begin
+  SRL.FindColors(TPA, CTS0(65530, 0), Mainscreen.Bounds());
+  if (not TPA.Len > 0) then Antiban.RandomRotate()
+  else
+    begin
+      Mouse.HumanMove(TPA.Mean());
+      Wait(25, 75);
+      if (Mainscreen.IsUpText('Exit')) then Mouse.Click(MOUSE_LEFT)
+      else Antiban.RandomRotate();
+    end;
+  Wait(125, 250);
 end;
 
 function AtTile(Tile: TPoint): Boolean;
@@ -227,6 +242,7 @@ begin
         'MTALOBBY'   : WalkToStatues();
         'INROOM'     : SolveRoom();
         'STATUEAREA' : EnterRoom();
+        'UNKNOWN'    : ExitRoom();
       end;
     Wait(150, 350);
     end;

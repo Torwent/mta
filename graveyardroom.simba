@@ -1,4 +1,4 @@
-program cg;
+program graveyardroom;
 {$DEFINE SRL_USE_REMOTEINPUT}
 {$I WaspLib/osr.simba}
 {$DEFINE FORMS_V2}
@@ -13,7 +13,6 @@ const
 
 var
   FOOD         : TRSItem      := 'Lobster';
-  FRUIT        : TRSItem      := 'Banana';
   RSW          : TRSWalker;
   State        : String;
   FL, HP       : Int32;
@@ -22,8 +21,9 @@ var
                                   'Ring of dueling(3)', 'Ring of dueling(4)',
                                   'Ring of dueling(5)', 'Ring of dueling(6)',
                                   'Ring of dueling(7)', 'Ring of dueling(8)'];
+  R8           : TRSBankItem := ['Ring of dueling(8)', 1, false];
+  FW           : TRSBankItem := [FOOD, 2, false];
   JoinTile     : TPoint      := [268, 110];
-  MTADoorTile  : TPoint      := [268, 182];
   PoolTile     : TPoint      := [668, 144];
   CGROOM       : TPointArray := [[696, 391], [952, 390], [952, 650], [692, 648]];
   DUELARENA    : TPointArray := [[47, 73], [335, 73], [340, 339], [49, 343]];
@@ -38,6 +38,7 @@ var
   StartXP      : Int32;
   CurrentXP    : Int32;
   GainedXP     : Int32 := 0;
+  FRUIT        : TRSItem      := 'Banana';
 
 procedure TMouse.HumanMove(Point: TPoint);
 var
@@ -85,7 +86,7 @@ end;
 procedure PrintProgress();
 begin
   ClearDebug();
-  WriteLn('| ~ creature-graveyard-v0.01 ~ |');
+  WriteLn('| ~ creature-graveyard-v0.02 ~ |');
   WriteLn('| -----------------------------|');
   WriteLn('| Time running   : ', SRL.MsToTime(GetTimeRunning, Time_Short));
   WriteLn('| Magic exp      : ', GainedXP);
@@ -151,7 +152,7 @@ begin
       else
         begin
           Mouse.Click(MOUSE_LEFT);
-          Wait(3750, 4250);
+          Wait(5750, 7250);
           Exit;
         end;
     end;
@@ -175,11 +176,11 @@ begin
   if (not Mainscreen.HasInterface()) then OpenBank();
   WaitUntil(Mainscreen.HasInterface(), 50, 5000);
   if (not Mainscreen.HasInterface()) then Exit;
-  if (not Inventory.ContainsAny(RINGS)) then Bank.WithdrawSlot([1, 1, False], True);
+  if (not Inventory.ContainsAny(RINGS)) then Bank.WithDrawItem(R8, false);
   Wait(100, 200);
   if (not Inventory.ContainsItem(FOOD)) then
     begin
-      if Bank.ContainsItem(FOOD) then Bank.WithdrawItem([FOOD, 2, False], True)
+      if Bank.ContainsItem(FOOD) then Bank.WithdrawItem(FW, false)
       else TerminateScript('Out of food!');
     end;
   Wait(100, 200);
@@ -297,7 +298,7 @@ begin
   if STATUEAREA.Bounds.Contains(Pos) then Exit('STATUEAREA');
   if FIREALTAR.BOUNDS.Contains(Pos) then Exit('FIREALTAR');
   if DUELARENA.Bounds.Contains(Pos) then Exit('DUELARENA');
-  TerminateScript('Unknown State!');
+  Exit('UNKNOWN');
 end;
 
 procedure TeleportToFerox();
@@ -410,7 +411,6 @@ begin
     begin
     if not RSClient.IsLoggedIn() then Login.LoginPlayer();
     State := GetState();
-    WriteLn('STATE: ', State);
     case State of
       'CGROOM'     : SolveRoom();
       'DUELARENA'  : TravelToYard();
@@ -421,6 +421,7 @@ begin
       'POOLAREA'   : RestoreAndBank();
       'FIREALTAR'  : WalkFromAltar();
       'FEROXTELE'  : WalkThroughFerox();
+      'UNKNOWN'    : ExitRoom();
     end;
     Wait(125, 775);
     end;
