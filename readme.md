@@ -1,38 +1,59 @@
-## MTA
+# MTA
 
-This readme and the script files are incomplete and will be updated soon. The scripts themselves are stable and people are impatient, so here's an early release.
+Completes the Mage Training Arena minigame in OSRS.
 
----
+## Requirements
+
+### Software
+
+- Runelite
+- Simba
+- WaspLib v13.6.5 or newer
+- SRL-T v1.3.3 or newer
+
+### OSRS
+
+Please check the [osrs.wiki](https://oldschool.runescape.wiki/w/Mage_Training_Arena) page for requirements to specific room.
+
+The creature graveyard script banks with rings of dueling and returns to the minigame using Ring of the elements.
 
 ## General instructions:
 
-1. Save the following map into Simba/Includes/WaspLib/osr/walker/maps as mta.png: https://i.imgur.com/yRapvnM.png
-2. Save the runelite.properties and import it from Runelite settings, then activate it
-3. Use the RuneLite plugin menu entry swapper to swap the walking options on the statues in MTA statue room by right clicking them. For example you want to do telekinetic room, you modify all other rooms left click to be walk here and telekinetic room's left click to be enter. I also suggest you to edit the walk option of the building door to be walk here or cancel if running any other room than graveyard. And when running graveyard you put it back to Enter.
-4. Run script with RuneLite (Search discord for instructions if you don't know how)
-
----
+1. Save the following [map](https://i.imgur.com/yRapvnM.png) into Simba/Includes/WaspLib/osr/walker/maps as mta.png
+2. Save the runelite.properties file anywhere you'd like and import it into runelite from the profiles tab. Remember to activate the profile by doubleclicking it.
+3. Download scripts into Simba/Scripts folder
+4. Select the RuneLite window with Simba's target selector
+5. The scripts work best with fixed mode enabled and client zoomed far out
+6. Make sure you have enough of the required runes in inventory
+7. Run script
 
 ## Instructions for specific rooms:
 
-### Graveyard:
+### Creature Graveyard:
 
 - Ring of elements equipped with a lot of charges
-- Ring of duelings in 2nd slot of your bank
-- Ring of dueling in 1st slot of inventory
-- Have all of your runes required for the spells and the runes the room gives as rewards (5 total) at the bottom of your inventory
+- Ring of duelings(8) visible at the top of your bank
+- Food visible at the top of your bank, you can configure food in script settings
+- Runes at the bottom of your inventory, example bank and inventory layout:
+  ![example invy](https://i.imgur.com/yG9VDqf.png)
+- Start at Ferox or at MTA
 
-### Alchemy:
+### Alchemist's Playground:
 
-- Have all runes/other items at the bottom of your inventory
+- Similar to the Creature Graveyard script, have all of your runes and other items at the bottom of your inventory
+- Start at MTA or in Alchemy room
 
-### Enchant:
+### Enchanting Chamber:
 
 - Script does level 5 enchant by default, change it in the script if you don't have the magic level for it
+- Start at MTA or in the Enchanting room
 
----
+### Telekinetic Theatre
 
-Thanks to the following people with helping in creating this:
+- No specific requirements
+- Start at MTA or in Telekinetic room
+
+## Thank you to the following people for helping with developing the scripts:
 
 - Torwent
 - Slacky
