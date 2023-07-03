@@ -6,7 +6,7 @@ Completes the Mage Training Arena minigame in OSRS.
 
 ### Software
 
-- Runelite
+- 32-Bit RuneLite
 - Simba
 - WaspLib v13.6.5 or newer
 - SRL-T v1.3.3 or newer
@@ -25,7 +25,8 @@ The creature graveyard script banks with rings of dueling and returns to the min
 4. Select the RuneLite window with Simba's target selector
 5. The scripts work best with fixed mode enabled and client zoomed far out
 6. Make sure you have enough of the required runes in inventory
-7. Run script
+7. Make sure you have your brightness set to 100 %
+8. Run script
 
 ## Instructions for specific rooms:
 
